@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ios-notes-j2me" default="jar" basedir=".">
+    <property name="src.dir" value="src"/>
+    <property name="build.dir" value="build/classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="midp.jar" value="lib/midpapi.jar"/>
+    <property name="cldc.jar" value="lib/cldcapi.jar"/>
+
+    <target name="clean">
+        <delete dir="build"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="${build.dir}"/>
+        <javac srcdir="${src.dir}" destdir="${build.dir}"
+               source="1.3" target="1.3" encoding="UTF-8"
+               bootclasspath="${cldc.jar}:${midp.jar}"
+               includeantruntime="false" debug="false"/>
+        <copy todir="${build.dir}">
+            <fileset dir="resources" erroronmissingdir="false"/>
+        </copy>
+    </target>
+
+    <target name="jar" depends="compile">
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/Notes.jar" basedir="${build.dir}">
+            <manifest>
+                <attribute name="MIDlet-Name" value="Notes"/>
+                <attribute name="MIDlet-Version" value="1.0.0"/>
+                <attribute name="MIDlet-Vendor" value="Personal"/>
+                <attribute name="MIDlet-1" value="Notes,,com.example.notes.NotesMIDlet"/>
+                <attribute name="MicroEdition-Profile" value="MIDP-2.0"/>
+                <attribute name="MicroEdition-Configuration" value="CLDC-1.1"/>
+            </manifest>
+        </jar>
+        <length file="${dist.dir}/Notes.jar" property="jar.size"/>
+        <echo file="${dist.dir}/Notes.jad">MIDlet-Name: Notes
+MIDlet-Version: 1.0.0
+MIDlet-Vendor: Personal
+MIDlet-1: Notes,,com.example.notes.NotesMIDlet
+MIDlet-Jar-URL: Notes.jar
+MIDlet-Jar-Size: ${jar.size}
+MicroEdition-Profile: MIDP-2.0
+MicroEdition-Configuration: CLDC-1.1
+</echo>
+    </target>
+</project>

@@ -139,4 +139,4 @@ public final class NotesMIDlet extends MIDlet implements CommandListener {
             else if (c == cancelCommand) showList();
         }
     }
-                            }
+}
