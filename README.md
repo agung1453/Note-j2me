@@ -6,7 +6,8 @@ A small keypad-friendly Notes MIDlet for Java ME phones. Target: MIDP 2.0 / CLDC
 - Create, edit and delete notes
 - Persistent local storage using Record Management System (RMS)
 - Works offline
-- Simple screen-based UI suitable for a feature phone
+- Custom Notes-inspired list screen with warm yellow header, highlighted selection, note preview and date
+- Keypad navigation with up/down/select
 
 ## Build with GitHub Actions
 1. Create a new GitHub repository.
